@@ -1,0 +1,54 @@
+{% extends "todo/base.html" %} 
+
+{% block title %}
+  Update Todo
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="form-body mt-5">
+    <div class="row">
+      <div class="form-holder">
+        <div class="form-content">
+          <div class="form-items">
+            <h3>Update</h3>
+            <p>Update your todo</p>
+            <form class="requires-validation" action="{% url "update" todo.id %}" method="POST" novalidate>
+              {% csrf_token %}
+              <div class="col-md-12 my-4">
+                <input
+                  value={{todo.title}}
+                  class="form-control"
+                  type="text"
+                  name="title"
+                  placeholder="Todo Title"
+                  required
+                />
+                <div class="valid-feedback">Username field is valid!</div>
+                <div class="invalid-feedback">
+                  Username field cannot be blank!
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <textarea name="des" class="form-control" placeholder="Write Your Todo Here........">{{todo.des}}
+                </textarea>
+                <div class="valid-feedback">Email field is valid!</div>
+                <div class="invalid-feedback">Email field cannot be blank!</div>
+              </div>
+              
+              <div class="form-button my-3">
+                <button id="submit" type="submit" class="btn btn-success">
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
