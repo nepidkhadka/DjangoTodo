@@ -9,14 +9,14 @@
 {% include "todo/addtodo.html" %}
 
 <div class="container">
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
       <th scope="col">Desc</th>
       <th scope="col">Status</th>
-      <th scope="col">Action</th>
+      <th colspan="2" class="text-center" >Action</th>
     </tr>
   </thead>
   <tbody>
@@ -25,7 +25,19 @@
       <th scope="row">{{todo.id}}</th>
       <td>{{todo.title}}</td>
       <td>{{todo.des}}</td>
-      <td>{{todo.isDone}}</td>
+      <td>
+        {% if todo.isDone%}
+          <a href="{% url "setdone" todo.id %}" class="badge badge-success bg-success">Completed</a>
+          {% else %}
+          <a href=" {% url "setdone" todo.id %} " class="badge badge-waring bg-warning">Pending</a>
+        {% endif %}
+      </td>
+      <td>
+        <a href=" {% url "delete" todo.id %} " class="badge badge-success bg-danger">Delete</a>
+      </td>
+      <td>
+        <a href=" {% url "delete" todo.id %} " class="badge badge-success bg-primary">Update</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
